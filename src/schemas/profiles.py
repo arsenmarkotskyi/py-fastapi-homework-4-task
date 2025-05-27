@@ -9,8 +9,9 @@ from validation import (
     validate_image,
     validate_gender,
     validate_birth_date,
-    validate_info
+    validate_info,
 )
+
 
 class ProfileRequestSchema(BaseModel):
     first_name: Annotated[Optional[str], AfterValidator(validate_name)] = None
@@ -18,7 +19,9 @@ class ProfileRequestSchema(BaseModel):
     gender: Annotated[Optional[str], AfterValidator(validate_gender)] = None
     date_of_birth: Annotated[Optional[date], AfterValidator(validate_birth_date)] = None
     info: Annotated[Optional[str], AfterValidator(validate_info)] = None
-    avatar: Annotated[Optional[UploadFile], AfterValidator(validate_image), File()] = None
+    avatar: Annotated[Optional[UploadFile], AfterValidator(validate_image), File()] = (
+        None
+    )
 
 
 class ProfileResponseSchema(BaseModel):
@@ -32,7 +35,3 @@ class ProfileResponseSchema(BaseModel):
     avatar: str | None
 
     model_config = {"from_attributes": True}
-
-
-
-
