@@ -36,7 +36,9 @@ def validate_image(avatar: UploadFile) -> UploadFile:
 
 
 def validate_gender(gender: str) -> str:
-    if gender not in GenderEnum.__members__.values():
+    try:
+        gender = GenderEnum(gender)
+    except ValueError:
         raise ValueError(
             f"Gender must be one of: {', '.join(g.value for g in GenderEnum)}"
         )
@@ -57,5 +59,5 @@ def validate_info(info: str = None) -> str:
     if info:
         striped_info = info.strip()
         if len(striped_info) != 0:
-            return info
+            return striped_info
     raise ValueError("Info field cannot be empty or contain only spaces.")

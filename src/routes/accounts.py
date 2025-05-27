@@ -308,7 +308,7 @@ async def request_password_reset_token(
 
     return MessageResponseSchema(
         message="If you are registered, you will receive an email with instructions.",
-        token=reset_token.token,
+        # token=reset_token.token,
     )
 
 
