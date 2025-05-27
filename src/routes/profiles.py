@@ -1,3 +1,4 @@
+from bs4.diagnose import profile
 from fastapi import APIRouter, Depends, status, Header, Path, HTTPException, Form
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Annotated
@@ -36,6 +37,8 @@ async def create_profile(
     db: AsyncSession = Depends(get_db),
     s3_client: S3StorageInterface = Depends(get_s3_storage_client)
 ):
+    print(profile_data)
+
     query = select(UserModel).options(joinedload(UserModel.profile)).where(UserModel.id == user_id)
     user = (await db.execute(query)).scalars().first()
 
