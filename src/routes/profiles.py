@@ -1,4 +1,3 @@
-from bs4.diagnose import profile
 from fastapi import APIRouter, Depends, status, Header, Path, HTTPException, Form
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Annotated
